@@ -18,7 +18,7 @@ version = "0.1"
 
 dependencies = [
     "click",
-    "python-bioformats"
+    "aicsimageio"
 ]
 
 [project.optional-dependencies]
