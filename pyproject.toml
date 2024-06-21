@@ -18,7 +18,8 @@ version = "0.1"
 
 dependencies = [
     "click",
-    "aicsimageio"
+    "aicsimageio",
+    "numpy"
 ]
 
 [project.optional-dependencies]
@@ -37,7 +38,7 @@ vsi2tif = "vsi2tif.cli_interface:vsi2tif_cli"
 # partially copied from github.com/teamtomo/membrain-seg
 line-length = 88
 target-version = "py38"
-extend-select = [
+lint.extend-select = [
     "E",    # style errors
     "W",    # style warnings
     "F",    # flakes
@@ -49,7 +50,7 @@ extend-select = [
     "A001", # flake8-builtins
     "RUF",  # ruff-specific rules
 ]
-extend-ignore = [
+lint.extend-ignore = [
     "D100", # Missing docstring in public module
     "D107", # Missing docstring in __init__
     "D203", # 1 blank line required before class docstring
@@ -62,4 +63,4 @@ extend-ignore = [
 
 [tool.ruff.format]
 quote-style = "double"
-indent-style = "tab"
+indent-style = "space"

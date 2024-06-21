@@ -1,1 +1,1 @@
-"""Make my life easier by preprocessing vsi stacks.#
+"""Make my life easier by preprocessing vsi stacks."""
