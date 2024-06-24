@@ -39,7 +39,7 @@ def _vsi2tif(bleach_correct: bool, split_colors: bool, img_list: []):
                         imagej=True,
                         resolution = (1.0 / image_temp.physical_pixel_sizes.X, 
                                       1.0 / image_temp.physical_pixel_sizes.Y),
-                        resolutionunit = 5,
+                        resolutionunit = 'MICROMETER',
                         metadata = {'spacing': image_temp.physical_pixel_sizes.Z,
                                     'unit': 'um'})
                 
