@@ -31,7 +31,7 @@ def _vsi2tif(bleach_correct: bool, split_colors: bool, img_list: []):
             for i in range(len(image.channel_names)):
                 ch = str(image.channel_names[i])
 
-                image_temp = AICSImage(image.get_image_data("TZYX", C=i),
+                image_temp = AICSImage(image.get_image_data("TZCYX", C=i),
                                        physical_pixel_sizes = image.physical_pixel_sizes)
                 
                 imwrite(img.with_name(f"{img.stem}_{ch!s}.tif"),
@@ -41,7 +41,8 @@ def _vsi2tif(bleach_correct: bool, split_colors: bool, img_list: []):
                                       1.0 / image_temp.physical_pixel_sizes.Y),
                         resolutionunit = 'MICROMETER',
                         metadata = {'spacing': image_temp.physical_pixel_sizes.Z,
-                                    'unit': 'um'})
+                                    'unit': 'um',
+				    'axes': 'TZCYX'})
                 
         else:
             # Save all channels as ome-tiff
