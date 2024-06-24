@@ -19,7 +19,8 @@ version = "0.1"
 dependencies = [
     "click",
     "aicsimageio",
-    "numpy"
+    "numpy",
+    "tifffile"
 ]
 
 [project.optional-dependencies]

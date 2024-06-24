@@ -3,6 +3,7 @@ import numpy as np
 from pathlib import Path
 
 from aicsimageio import AICSImage
+from tifffile import imwrite
 
 
 def _vsi2tif(bleach_correct: bool, split_colors: bool, img_list: []):
@@ -24,7 +25,7 @@ def _vsi2tif(bleach_correct: bool, split_colors: bool, img_list: []):
             
             image = image_temp
 
-        # Write out ome-tiff result
+        # Write out tiff result
         # Split into individual channels, if desired
         if split_colors:
             for i in range(len(image.channel_names)):
@@ -32,10 +33,19 @@ def _vsi2tif(bleach_correct: bool, split_colors: bool, img_list: []):
 
                 image_temp = AICSImage(image.get_image_data("TZYX", C=i),
                                        physical_pixel_sizes = image.physical_pixel_sizes)
-
-                image_temp.save(img.with_name(f"{img.stem}_{ch!s}.ome.tiff"))
+                
+                imwrite(img.with_name(f"{img.stem}_{ch!s}.tif"),
+                        image_temp.data,
+                        imagej=True,
+                        resolution = (1.0 / image_temp.physical_pixel_sizes.X, 
+                                      1.0 / image_temp.physical_pixel_sizes.Y),
+                        resolutionunit = 5,
+                        metadata = {'spacing': image_temp.physical_pixel_sizes.Z,
+                                    'unit': 'um'})
+                
         else:
-            image.save(img.with_name(f"{img.stem}.ome.tiff"))
+            # Save all channels as ome-tiff
+            image.save(img.with_name(f"{img.stem}.tif"))
 
 
 
