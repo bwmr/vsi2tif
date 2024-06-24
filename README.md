@@ -13,5 +13,6 @@ pip install "git+https://github.com/bwmr/vsi2tif.git"
 ```
 
 ```
-vsi2tif --nobleach session_folder/*vsi
+vsi2tif --help
+vsi2tif session_folder/*vsi
 ```
