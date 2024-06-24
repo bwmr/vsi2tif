@@ -14,7 +14,7 @@ from vsi2tif import utils
     "--split-colors",
     is_flag=True,
     default=False,
-    help="Save one (simple) tiff per channel, instead of one ome-tiff for all."
+    help="Save one (simple) tiff per channel, instead of one ome-tiff for all.",
 )
 @click.argument(
     "input_files",
